@@ -782,6 +782,190 @@
       line-height: 1.35;
     }
 
+    .planet-section {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+      gap: 34px;
+      align-items: center;
+      padding: 46px;
+      border: 1px solid rgba(22, 61, 34, 0.14);
+      border-radius: var(--radius);
+      color: #eefbe9;
+      background:
+        linear-gradient(90deg, rgba(182, 255, 111, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(182, 255, 111, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 26% 18%, rgba(182, 255, 111, 0.16), transparent 28rem),
+        linear-gradient(135deg, #0e2417, #193e24 56%, #2e5430);
+      background-size: 32px 32px, 32px 32px, auto, auto;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .planet-copy h2 {
+      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      line-height: 1;
+    }
+
+    .planet-copy p {
+      color: rgba(238, 251, 233, 0.82);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .planet-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 440px;
+      perspective: 1000px;
+    }
+
+    .planet-orbit {
+      position: absolute;
+      width: min(92%, 430px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(182, 255, 111, 0.18);
+      border-radius: 50%;
+      transform: rotateX(68deg) rotateZ(-18deg);
+      box-shadow: 0 0 70px rgba(182, 255, 111, 0.12);
+    }
+
+    .planet-earth {
+      position: relative;
+      width: min(78vw, 330px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.82), transparent 0 7%, transparent 18%),
+        radial-gradient(circle at 34% 35%, #80d955 0 12%, transparent 13%),
+        radial-gradient(circle at 58% 31%, #5db747 0 9%, transparent 10%),
+        radial-gradient(circle at 44% 60%, #67c556 0 15%, transparent 16%),
+        radial-gradient(circle at 70% 66%, #8ed66f 0 10%, transparent 11%),
+        linear-gradient(135deg, #5bc2cd 0%, #266b75 46%, #173e48 100%);
+      box-shadow:
+        inset -44px -38px 70px rgba(5, 23, 18, 0.62),
+        inset 28px 24px 54px rgba(255, 255, 255, 0.18),
+        0 34px 90px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      animation: earthFloat 7s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .planet-earth::before {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      border-radius: inherit;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.08) 0,
+        rgba(255, 255, 255, 0.08) 1px,
+        transparent 1px,
+        transparent 18px
+      );
+      transform: rotate(-16deg);
+      animation: earthLines 9s linear infinite;
+    }
+
+    .planet-earth::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 24%, transparent 0 34%, rgba(255, 255, 255, 0.18) 35%, transparent 48%);
+      pointer-events: none;
+    }
+
+    .sprout-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .sprout-dot {
+      position: absolute;
+      width: 22px;
+      height: 36px;
+      transform: translate(-50%, -50%) scale(0);
+      filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.24));
+      animation: sproutGrow 5.8s ease-out forwards;
+    }
+
+    .sprout-dot::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      bottom: 0;
+      width: 3px;
+      height: 24px;
+      border-radius: 999px;
+      background: #d6ffb4;
+    }
+
+    .sprout-dot::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 5px;
+      width: 18px;
+      height: 22px;
+      border-radius: 90% 8% 90% 8%;
+      background: linear-gradient(145deg, #c8ff87, #58a93e);
+      transform: rotate(-34deg);
+    }
+
+    .community-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .community-cta small {
+      color: rgba(238, 251, 233, 0.72);
+      line-height: 1.45;
+    }
+
+    @keyframes earthFloat {
+      0%,
+      100% {
+        transform: rotateX(6deg) rotateY(-14deg) translateY(0);
+      }
+      50% {
+        transform: rotateX(10deg) rotateY(12deg) translateY(-14px);
+      }
+    }
+
+    @keyframes earthLines {
+      from {
+        translate: -20px 0;
+      }
+      to {
+        translate: 20px 0;
+      }
+    }
+
+    @keyframes sproutGrow {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(-8deg);
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(4deg);
+      }
+      78% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7) rotate(8deg);
+      }
+    }
+
     .include-list {
       display: grid;
       gap: 12px;
@@ -1323,6 +1507,25 @@
         min-height: 560px;
       }
 
+      .planet-section {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .planet-stage {
+        min-height: 340px;
+        order: -1;
+      }
+
+      .planet-earth {
+        width: min(76vw, 280px);
+      }
+
+      .community-cta {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
       .demo-video,
       .demo-video video {
         min-height: 430px;
@@ -1509,6 +1712,31 @@
         </div>
       </section>
 
+      <section class="section" id="planeta">
+        <div class="planet-section">
+          <div class="planet-stage" aria-label="Planeta Tierra con plantas creciendo">
+            <div class="planet-orbit" aria-hidden="true"></div>
+            <div class="planet-earth">
+              <div class="sprout-field" id="sproutField" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="planet-copy">
+            <span class="eyebrow">Una huella que crece</span>
+            <h2>Cada kit suma vida al planeta, empezando por tu casa.</h2>
+            <p>
+              Imagina miles de ventanas, balcones y cocinas sembrando al mismo tiempo. Eco Huella nace para que cultivar sea fácil, compartido y posible incluso en espacios pequeños.
+            </p>
+            <p>
+              Únete a la comunidad, comparte tus avances y recibe soporte para que tu huerto no se quede en intención: que brote, crezca y se vuelva parte de tu rutina.
+            </p>
+            <div class="community-cta">
+              <a class="button" href="https://chat.whatsapp.com/Inj2EdKJbs6I2FUHHjXK4u?s=sw&p=i&mlu=0" target="_blank" rel="noopener">Unirme a la comunidad</a>
+              <small>Grupo privado de acompañamiento, tips y avances de otros huertos Eco Huella.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="comunidad">
         <div class="community">
           <div>
@@ -1597,6 +1825,37 @@
       Eco Huella. Pequeñas acciones, grandes cambios.
     </footer>
   </div>
+  <script>
+    const sproutField = document.getElementById("sproutField");
+    const sproutPositions = [
+      [34, 28],
+      [58, 24],
+      [46, 42],
+      [64, 48],
+      [38, 58],
+      [55, 68],
+      [72, 62],
+      [28, 48]
+    ];
+
+    let sproutIndex = 0;
+
+    function plantSprout() {
+      if (!sproutField) return;
+      const sprout = document.createElement("span");
+      const position = sproutPositions[sproutIndex % sproutPositions.length];
+      sproutIndex += 1;
+      sprout.className = "sprout-dot";
+      sprout.style.left = `${position[0]}%`;
+      sprout.style.top = `${position[1]}%`;
+      sprout.style.animationDelay = "0s";
+      sproutField.appendChild(sprout);
+      window.setTimeout(() => sprout.remove(), 6000);
+    }
+
+    plantSprout();
+    window.setInterval(plantSprout, 1000);
+  </script>
 </body>
 </html>
 
